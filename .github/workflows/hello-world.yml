@@ -1,0 +1,29 @@
+name: Sanity Test (WIP)
+on:
+  workflow_dispatch:
+    inputs:
+      branch-name:
+        description: "Name of the release branch after 'release/' prefix (release/{branch-name})"
+        required: true
+        type: string
+      test-DNS:
+        description: 'DNS of Test Environment'
+        required: true
+        type: string
+      E2ESanity:
+        description: 'E2E Sanity Test'
+        required: true
+        type: choice
+        options:
+          - all-ppe-e2e
+          - all-preview-e2e
+
+jobs:
+  run-sanity-test:
+    name: Sanity Test
+    timeout-minutes: 30
+    runs-on: owd-enterprise-runners
+
+    steps:
+      - name: Say Hello
+        run: echo "Hello, World! This is a GitHub Actions Workflow."
